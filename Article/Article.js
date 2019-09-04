@@ -168,8 +168,16 @@ const data = [
       div.appendChild(span);
 
       //strecth task---> close button
-    //   const button = document.createElement('button');
-    //   button.addEventListener('click', e => )
+      const button = document.createElement('button');
+      button.textContent = "close";
+      button.setAttribute('class','close');
+
+      button.addEventListener('click', e => {
+        div.style.display = "none";
+      })
+
+      div.appendChild(button);
+      /* End Close Button Stretch */
     
       return div;
 
