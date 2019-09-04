@@ -89,7 +89,7 @@ const data = [
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
+
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
@@ -112,3 +112,106 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+
+ /* <div class="article">
+    <h2>{title of the article}</h2>
+    <p class="date">{date of the article}</p>
+
+    {three separate paragraph elements}
+
+    <span class='expandButton'></span>
+  </div>
+
+  Hint: You will need to use createElement more than once here!*/
+  
+  function createComponent({title,date,firstParagraph,secondParagraph,thirdParagraph}) {
+      const div = document.createElement('div');
+      div.setAttribute('class','article');
+
+      const h2 = document.createElement('h2');
+      h2.textContent = title;
+
+      const p = document.createElement('p');
+      p.setAttribute('class','date');
+      p.textContent = date;
+
+      const p1 = document.createElement('p');
+      p1.textContent =  firstParagraph;
+
+      const p2 = document.createElement('p');
+      p2.textContent =  secondParagraph;
+
+      const p3 = document.createElement('p');
+      p3.textContent =  thirdParagraph;
+
+      const span = document.createElement('span');
+      span.setAttribute('class','expandButton');
+      span.textContent = "Toggle";
+      span.style.textAlign = "center";
+
+      
+    //   span.
+
+      span.addEventListener('click', e => {
+          document.querySelector('.article')
+          .classList.toggle('article-open')
+      })
+
+
+      div.appendChild(h2);
+      div.appendChild(p);
+      div.appendChild(p1);
+      div.appendChild(p2);
+      div.appendChild(p3);
+      div.appendChild(span);
+
+      //strecth task---> close button
+      const button = document.createElement('button');
+      button.textContent = "close";
+      button.setAttribute('class','close');
+
+      button.addEventListener('click', e => {
+        div.style.display = "none";
+      })
+
+      div.appendChild(button);
+      /* End Close Button Stretch */
+    
+      return div;
+
+  }
+
+//Adding new article to the data;
+const newArticle =   {
+    title: 'Product Manager',
+    date: 'Mar 1st, 2020',
+        firstParagraph: `i think i kinda like the idea of a product manager much better than a software enginner, there are many reasons for that
+        one of which will mean that i will be talking to business people on a daily basis to show them how they can leverage paystack to do the very things
+        they wasnt o achieve with  their business' as well as also building cool features of an app, i think its a very goo combo if you ask me. `,
+
+    secondParagraph: `Lorem ipsum dolor, i am kinda tored of theis placeholder text thign why dont we invent something more profojnd than the lorem ipsum rubbish that 
+     people often type they dont think they can thype something better?. I wonder why people followed the irst guy that typed this, they could have gone
+     their own path but no they wanted to follow people who were really jokers, now this thinfg is a standard isshhhh. `,
+
+    thirdParagraph: `Okay i have typed enough gibberish already so ia m not quite sure which gibberish i will type hre that is  not alreasdy in
+     the previous teo paragraphs. `
+  };
+
+  data.push(newArticle);
+  const articles = data.map(createComponent);
+  const articlesDiv = document.querySelector(".articles");
+  const {appendChild} = articlesDiv;
+  articles.forEach(article => {
+      articlesDiv.appendChild(article)
+  });
+  console.log(articlesDiv)
+  
+//  Adding new article to the array
+
+
+
+
+
+
